@@ -1,12 +1,22 @@
 import express, { Express, Request, Response } from "express";
+import * as bodyParser from "body-parser";
+import landingRouter from "./routes/landing";
+
+function loggerMiddleware(request: express.Request, response: express.Response, next: any) {
+  console.log(`${request.method} ${request.path}`);
+  next();
+}
 
 const app: Express = express();
-const port = process.env.PORT || 3005;
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server");
-});
+app.set("view engine", "ejs");
+app.use(express.static("public"));
 
-app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
+app.use(bodyParser.json());
+app.use(loggerMiddleware);
+
+app.use("/", landingRouter);
+
+app.listen(3005, () => {
+  console.log(`⚡️[server]: Server is running at http://localhost:${3005}`);
 });
