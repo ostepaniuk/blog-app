@@ -6,10 +6,11 @@
 
 * `npm run build`
 * `npm run start`
-* `docker build . -t blog-app`
-* `docker run -p 3005:3005 -d blog-app` and open `http://localhost:3005`
+* `docker build . -t stepaniukalex/blog-app`
+* `docker run -p 3005:3005 -d stepaniukalex/blog-app` and open `http://localhost:3005`
 
 ## Staging Env Commands
 
-* ...
+* `docker pull stepaniukalex/blog-app`
+* `docker push stepaniukalex/blog-app`
 
